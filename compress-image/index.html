@@ -1,0 +1,74 @@
+<!doctype html>
+<html class="no-js">
+
+<head>
+    <meta charset="utf-8">
+    <title>Yassine El gana</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.29/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="angular-image-compress.js"></script>
+    <script src="scripts/app.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+</head>
+
+<body ng-app="angNewsApp">
+
+    <h3 style="text-align: center;">Image compress </h3>
+</br></br></br>
+    <div ng-controller="demoCtrl" >
+       
+        
+        <input id="inputImage" type="file" class="img2"  accept="image/*" ng-model="image1" image="image1" resize-max-height="800" resize-max-width="800" resize-quality="0.7" resize-type="image/jpg" ng-image-compress/>
+        
+       
+       
+        <br>
+        
+             <div class="table-responsive mt-3" ng-if="image1.length > 0" >
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th width="" style="color: #0d6efd;">Name of file</th>
+                        <th  class="" style="color: #0d6efd;">Size of image before </th>
+                        <th  class="" style="color: #0d6efd;">Size of image after </th>
+                        <th class="" style="color: #0d6efd;">Type</th>
+                        <th style="color: #0d6efd;">Delete</th>
+                        <th style="color: #0d6efd;">Compressed Image</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        <!-- i shall use index for delete row from table send it as parameter -->
+                    <tr class="ng-scope" ng-repeat="(index,item) in image1">
+                        <td>
+                            <strong class="ng-binding"> {{item.nameOfImage}}</strong> 
+                        </td>
+                        <td>
+                            <strong class="ng-binding">{{ (item.sizeBefore)/1024 | number:2}} KB</strong>
+                        </td>
+                        <td>
+                            <strong  class="ng-binding" ng-model="getSizeOfImage" >{{ (item.sizeAfter)/1024 | number:0}} KB</strong> 
+                        </td>
+        
+                        <td>
+                            <strong class="ng-binding">{{item.type}}</strong> 
+                        </td>
+                        <td >
+                           <button class="btn btn-danger" type="button" ng-model="test" ng-click="deleteImage(item.keyOfImage,index)">Supprimer</button>
+                        </td>
+                        <td>
+                            <img ng-src="{{item.dataURL}}" />
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                
+            </div>
+                
+              
+    </div>
+ 
+   
+
+</body>
+
+</html>
